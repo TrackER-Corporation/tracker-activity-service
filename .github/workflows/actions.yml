@@ -60,7 +60,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: leledallas/tracker-server:activity
+          tags: leledallas/tracker-server:users
 
   release-please:
     name: Release Please
