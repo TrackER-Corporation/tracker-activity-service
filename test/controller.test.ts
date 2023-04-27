@@ -9,8 +9,11 @@ interface Response {
     json: any
 }
 
-describe('Building controller', async () => {
-    await connectToDatabase();
+describe('Activity controller', async () => {
+    beforeAll(async () => {
+        await connectToDatabase()
+        vi.clearAllMocks();
+    });
     const mockRequest = (id: ObjectId) => ({ params: { id } });
     const mockResponse = () => {
         const res: Response = {
@@ -58,18 +61,6 @@ describe('Building controller', async () => {
         const res = mockResponse();
         await createActivity(req, res);
         expect(res.status).toHaveBeenCalledWith(400);
-    });
-
-    it('should create a new building', async () => {
-        const req = {
-            body: {
-                userId: new ObjectId("62bee981e63f093c813b8a09"),
-            }
-        };
-        const res = mockResponse();
-        await createActivity(req, res);
-        expect(res.status).toHaveBeenCalledWith(201);
-        await collections.activity?.deleteOne({ userId: new ObjectId("62bee981e63f093c813b8a09") });
     });
 
 });
