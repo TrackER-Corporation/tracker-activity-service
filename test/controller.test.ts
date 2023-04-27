@@ -34,9 +34,9 @@ describe('Activity controller', async () => {
         vi.clearAllMocks();
     });
 
-    it('should return error for no activity id', async () => {
-        const activity = { _id: new ObjectId("62bee981e63f093c813b8a02") };
-        const req = mockRequest(activity._id);
+    it('should return ok for existing activity', async () => {
+        const activity = { id: new ObjectId("62bee981e63f093c813b8a02") };
+        const req = mockRequest(activity.id);
         const res = mockResponse();
         mockCollections.activity.findOne.mockResolvedValueOnce(activity);
         await getActivityById(req, res);
@@ -44,8 +44,8 @@ describe('Activity controller', async () => {
     });
 
     it('should return error for no activity id', async () => {
-        const activity = { _id: new ObjectId("111111111111") };
-        const req = mockRequest(activity._id);
+        const activity = { id: new ObjectId("111111111111") };
+        const req = mockRequest(activity.id);
         const res = mockResponse();
         mockCollections.activity.findOne.mockResolvedValueOnce(activity);
         await getActivityById(req, res);

@@ -38,7 +38,8 @@ export const createActivity = asyncHandler(async (req, res) => {
 // @access  Private
 export const getActivityById = asyncHandler(async (req, res) => {
     const activity = await collections?.activity?.find({ userId: new ObjectId(req.params.id) }).toArray();
-    if (!activity || activity.length == 0) {
+    console.log(activity?.length)
+    if (activity?.length == 0) {
         res.status(401)
     } else {
         res.status(200)
