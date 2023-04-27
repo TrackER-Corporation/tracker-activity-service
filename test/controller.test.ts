@@ -35,19 +35,23 @@ describe('Activity controller', async () => {
     });
 
     it('should return ok for existing activity', async () => {
-        const activity = { id: new ObjectId("62bee981e63f093c813b8a02") };
-        const req = mockRequest(activity.id);
+        const req = {
+            params: {
+                id: "62bee981e63f093c813b8a02"
+            }
+        };
         const res = mockResponse();
-        mockCollections.activity.findOne.mockResolvedValueOnce(activity);
         await getActivityById(req, res);
         expect(res.status).toHaveBeenCalledWith(200);
     });
 
     it('should return error for no activity id', async () => {
-        const activity = { id: new ObjectId("111111111111") };
-        const req = mockRequest(activity.id);
+        const req = {
+            params: {
+                id: "111111111111"
+            }
+        };
         const res = mockResponse();
-        mockCollections.activity.findOne.mockResolvedValueOnce(activity);
         await getActivityById(req, res);
         expect(res.status).toHaveBeenCalledWith(401);
     });
