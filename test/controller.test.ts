@@ -1,4 +1,4 @@
-import { beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { createActivity, getActivityById } from "../db/controller/controller";
 import { ObjectId } from "mongodb";
 import { collections, connectToDatabase } from "../db/services/database.service";

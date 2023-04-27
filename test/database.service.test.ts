@@ -19,7 +19,6 @@ describe('connectToDatabase', () => {
             country_code: "IT",
             country_name: "Italy",
             city: "Ravenna",
-            IPv4: "79.47.247.19",
             state: "Provincia di Ravenna",
             date: "2023-03-15T08:45:48.695+00:00",
             __v: 0

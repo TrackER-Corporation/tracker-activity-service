@@ -27,7 +27,6 @@ export const createActivity = asyncHandler(async (req, res) => {
             res.status(201).json({ ...data })
         } else {
             res.status(400)
-            return
         }
     }
 
@@ -40,9 +39,7 @@ export const getActivityById = asyncHandler(async (req, res) => {
     const activity = await collections?.activity?.find({ userId: new ObjectId(req.params.id) }).toArray();
     if (!activity || activity.length == 0) {
         res.status(401)
-        return
     } else {
         res.status(200)
-        return
     }
 })
