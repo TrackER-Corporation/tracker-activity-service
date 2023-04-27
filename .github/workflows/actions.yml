@@ -31,7 +31,7 @@ jobs:
           CI: true
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_CONN_STRING: ${{ secrets.DB_CONN_STRING }}
-          COLLECTION: "activity"
+          COLLECTION: "activities"
       - name: Vitest Coverage Report
         uses: davelosert/vitest-coverage-report-action@v1.3.2
         with:
