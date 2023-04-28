@@ -59,12 +59,35 @@ describe('Activity controller', async () => {
     it('should return error for no userId', async () => {
         const req = {
             body: {
-                userId: null,
+                userId: "",
             }
         };
         const res = mockResponse();
         await createActivity(req, res);
         expect(res.status).toHaveBeenCalledWith(400);
+    });
+
+    it('should ok creating activity', async () => {
+        const req = {
+            body: {
+                userId: "111111111111",
+            }
+        };
+        const res = mockResponse();
+        await createActivity(req, res);
+        expect(res.status).toHaveBeenCalledWith(200);
+    });
+
+    it('should ok updating activity', async () => {
+        const req = {
+            body: {
+                userId: "111111111111",
+            }
+        };
+        const res = mockResponse();
+        await createActivity(req, res);
+        expect(res.status).toHaveBeenCalledWith(200);
+        await collections.activity?.deleteOne({ userId: new ObjectId("111111111111") });
     });
 
 });

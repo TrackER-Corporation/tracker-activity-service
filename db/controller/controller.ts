@@ -5,7 +5,7 @@ const ObjectId = require("mongodb").ObjectId;
 
 export const createActivity = asyncHandler(async (req, res) => {
     const { userId } = req.body
-    if (userId == null) {
+    if (!userId) {
         res.status(400)
         return
     }
@@ -13,16 +13,16 @@ export const createActivity = asyncHandler(async (req, res) => {
     const activityExists = await collections?.activity?.findOne({ IPv4: data.IPv4 })
     if (activityExists) {
         const updatedUser = await collections?.activity?.findOneAndUpdate(
-            { userId: activityExists.userId },
+            { userId: new ObjectId(activityExists.userId) },
             { $set: { ...data, date: Date.now() } },
-            {})
+            { returnDocument: 'after' })
         if (updatedUser)
             res.status(200).json({ ...data, date: Date.now() })
     }
     else {
         const activity = await collections?.activity?.insertOne({
             ...data,
-            userId,
+            userId: new ObjectId(userId)
         })
         if (activity) {
             res.status(200).json({ ...data })
