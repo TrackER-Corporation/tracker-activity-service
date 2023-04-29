@@ -14,7 +14,6 @@ describe('Activity controller', async () => {
         await connectToDatabase()
         vi.clearAllMocks();
     });
-    const mockRequest = (id: ObjectId) => ({ params: { id } });
     const mockResponse = () => {
         const res: Response = {
             json: {},
