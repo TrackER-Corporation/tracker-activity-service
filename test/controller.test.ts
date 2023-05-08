@@ -14,6 +14,7 @@ describe('Activity controller', async () => {
         await connectToDatabase()
         vi.clearAllMocks();
     });
+
     const mockResponse = () => {
         const res: Response = {
             json: {},
@@ -29,10 +30,6 @@ describe('Activity controller', async () => {
         },
     };
 
-    beforeAll(() => {
-        vi.clearAllMocks();
-    });
-
     it('should return ok for existing activity', async () => {
         const req = {
             params: {
@@ -40,7 +37,7 @@ describe('Activity controller', async () => {
             }
         };
         const res = mockResponse();
-        await getActivityById(req, res);
+        await getActivityById(req, res, {});
         expect(res.status).toHaveBeenCalledWith(200);
     });
 
@@ -51,8 +48,7 @@ describe('Activity controller', async () => {
             }
         };
         const res = mockResponse();
-        await getActivityById(req, res);
-        expect(res.status).toHaveBeenCalledWith(401);
+        expect(async () => await getActivityById(req, res, {})).rejects.toThrow(/Error/);
     });
 
     it('should return error for no userId', async () => {
@@ -62,8 +58,8 @@ describe('Activity controller', async () => {
             }
         };
         const res = mockResponse();
-        await createActivity(req, res);
-        expect(res.status).toHaveBeenCalledWith(400);
+        expect(async () => await createActivity(req, res, {})).rejects.toThrow(/Error/);
+
     });
 
     it('should ok creating activity', async () => {
@@ -73,7 +69,7 @@ describe('Activity controller', async () => {
             }
         };
         const res = mockResponse();
-        await createActivity(req, res);
+        await createActivity(req, res, {});
         expect(res.status).toHaveBeenCalledWith(200);
     });
 
@@ -84,7 +80,7 @@ describe('Activity controller', async () => {
             }
         };
         const res = mockResponse();
-        await createActivity(req, res);
+        await createActivity(req, res, {});
         expect(res.status).toHaveBeenCalledWith(200);
         await collections.activity?.deleteOne({ userId: new ObjectId("111111111111") });
     });
