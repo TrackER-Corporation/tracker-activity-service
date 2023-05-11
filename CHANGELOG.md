@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/TrackER-Corporation/tracker-activity-service/compare/v1.0.1...v1.0.2) (2023-05-11)
+
+
+### Bug Fixes
+
+* add error on not found ([3d4c759](https://github.com/TrackER-Corporation/tracker-activity-service/commit/3d4c75912404a2fb69b8f54ff9a9457d0c011eec))
+* **getActivityById:** return array ([9f0ff5e](https://github.com/TrackER-Corporation/tracker-activity-service/commit/9f0ff5eaf2188e371bcc4986e35d403f59dbfe3d))
+
 ## [1.0.1](https://github.com/TrackER-Corporation/tracker-activity-service/compare/v1.0.0...v1.0.1) (2023-04-29)
 
 
